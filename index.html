@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<!-- saved from url=(0149)https://gensparkpublicblob.blob.core.windows.net/user-upload-image/page/toolu_013fwnMHKaQgz3jqYZAx27J1/analyse_neobanques_heatmap_corrigee_final.html -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyse des Opérations des Néo-Banques - Janvier 2024 à Juillet 2025</title>
+    <link href="./Analyse des Opérations des Néo-Banques - Janvier 2024 à Juillet 2025_files/tailwind.min.css" rel="stylesheet">
+    <script src="./Analyse des Opérations des Néo-Banques - Janvier 2024 à Juillet 2025_files/chart.js"></script>
+    <link rel="stylesheet" href="./Analyse des Opérations des Néo-Banques - Janvier 2024 à Juillet 2025_files/all.min.css">
+    <style>
+        :root {
+            --primary-green: #218466;
+            --light-beige: #F5EACF;
+            --neutral-gray: #C6C6C6;
+            --white: #FFFFFF;
+            --dark: #1D1D1D;
+        }
+        
+        .gradient-header {
+            background: linear-gradient(135deg, var(--primary-green), #2a9d8f);
+            color: white;
+        }
+        
+        .insight-box {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-left: 4px solid var(--primary-green);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .insight-box:hover {
+            transform: translateY(-2px);
+        }
+        
+        .stat-card {
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .chart-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .top-talent-badge {
+            background: linear-gradient(135deg, var(--primary-green), #2a9d8f);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .bank-badge {
+            background: var(--light-beige);
+            color: var(--dark);
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 10px;
+        }
+        
+        .heatmap-cell {
+            display: inline-block;
+            width: 40px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            margin: 1px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .heatmap-0 { background-color: #f8f9fa; color: #6c757d; }
+        .heatmap-1 { background-color: #e3f2fd; color: #1976d2; }
+        .heatmap-2 { background-color: #e8f5e8; color: #388e3c; }
+        .heatmap-3 { background-color: #fff3e0; color: #f57c00; }
+        .heatmap-4 { background-color: #fce4ec; color: #c2185b; }
+        .heatmap-5 { background-color: #f3e5f5; color: #7b1fa2; }
+        .heatmap-6 { background-color: #e8eaf6; color: #3f51b5; }
+        .heatmap-7 { background-color: #e0f2f1; color: #00695c; }
+        .heatmap-8 { background-color: #fff8e1; color: #ff8f00; }
+        .heatmap-9 { background-color: #fce4ec; color: #ad1457; }
+        .heatmap-10 { background-color: #e1f5fe; color: #0277bd; }
+        .heatmap-11 { background-color: #e8f5e8; color: #2e7d32; }
+        .heatmap-12 { background-color: #fff3e0; color: #ef6c00; }
+        .heatmap-13 { background-color: #fce4ec; color: #c2185b; }
+        .heatmap-14 { background-color: #f3e5f5; color: #7b1fa2; }
+        .heatmap-15 { background-color: #e8eaf6; color: #3f51b5; }
+        .heatmap-16 { background-color: #e0f2f1; color: #00695c; }
+        .heatmap-17 { background-color: #fff8e1; color: #ff8f00; }
+        .heatmap-18 { background-color: #fce4ec; color: #ad1457; }
+        .heatmap-19 { background-color: #e1f5fe; color: #0277bd; }
+        .heatmap-20 { background-color: #ffebee; color: #c62828; }
+    </style>
+<style>
+    .genspark-notice-dialog {
+      display: flex;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 10001;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .genspark-notice-content {
+      background-color: white;
+      border-radius: 8px;
+      max-width: 600px;
+      width: 90%;
+      box-sizing: border-box;
+      padding: 10px 30px 30px 30px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      font-size: 16px;
+    }
+
+    .genspark-notice-title {
+      color: #000;
+      font-family: Arial;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 150%; 
+    }
+
+    .genspark-notice-list {
+      margin: 24px 0;
+      
+      color: #606366;
+      font-family: Arial;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 150%;
+      padding-left: 12px;
+    }
+
+    .genspark-notice-list li {
+      margin-bottom: 12px;
+      list-style-type: disc;
+    }
+
+    .genspark-notice-list li a {
+      color: #606366;
+      text-decoration: underline;
+    }
+
+    .genspark-notice-checkbox {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      gap: 10px;
+
+      color: #232425;
+
+      font-family: Arial;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+
+    .genspark-notice-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+      
+    .genspark-notice-ok {
+      color: #232425;
+
+      text-align: center;
+      font-family: Arial;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 150%; 
+
+      cursor: pointer;
+      display: flex;
+      height: 40px;
+      padding: 6px 14px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      align-self: stretch;
+      border-radius: 8px;
+      border: 1px solid #000;
+      box-sizing: border-box;
+      width: 100%;
+    }
+  </style></head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <div class="gradient-header py-8 px-4 text-center">
+        <h1 class="text-4xl font-bold mb-2">Analyse des Opérations des Néo-Banques</h1>
+        <p class="text-xl opacity-90">Janvier 2024 - Juillet 2025</p>
+        <p class="text-lg opacity-80 mt-2">Rapport d'analyse final avec données vérifiées</p>
+    </div>
+
+    <!-- Statistiques principales -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="stat-card p-6 text-center">
+                <div class="text-3xl font-bold text-blue-600 mb-2">330</div>
+                <div class="text-gray-600">Opérations Totales</div>
+            </div>
+            <div class="stat-card p-6 text-center">
+                <div class="text-3xl font-bold text-green-600 mb-2">139</div>
+                <div class="text-gray-600">Talents Uniques</div>
+            </div>
+            <div class="stat-card p-6 text-center">
+                <div class="text-3xl font-bold text-purple-600 mb-2">9</div>
+                <div class="text-gray-600">Banques Analysées</div>
+            </div>
+            <div class="stat-card p-6 text-center">
+                <div class="text-3xl font-bold text-orange-600 mb-2">50</div>
+                <div class="text-gray-600">Pic Juin 2025</div>
+            </div>
+        </div>
+
+        <!-- Top 20 des Créateurs -->
+        <div class="chart-container mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">
+                <i class="fas fa-trophy text-yellow-500 mr-2"></i>
+                TOP 20 des Créateurs (Données Vérifiées)
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between p-3 bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="top-talent-badge mr-3">1</span>
+                            <span class="font-semibold">Amixem</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold text-gray-700 mr-2">13</span>
+                            <span class="bank-badge">Revolut</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="top-talent-badge mr-3">2</span>
+                            <span class="font-semibold">Locklear</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold text-gray-700 mr-2">8</span>
+                            <span class="bank-badge">Trade Republic</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="top-talent-badge mr-3">3</span>
+                            <span class="font-semibold">Joyca</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold text-gray-700 mr-2">8</span>
+                            <span class="bank-badge">Revolut</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="top-talent-badge mr-3">4</span>
+                            <span class="font-semibold">Logfive</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold text-gray-700 mr-2">7</span>
+                            <span class="bank-badge">Trade Republic</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="top-talent-badge mr-3">5</span>
+                            <span class="font-semibold">Gotaga</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold text-gray-700 mr-2">6</span>
+                            <span class="bank-badge">Multi-banques</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="top-talent-badge mr-3">6</span>
+                            <span class="font-semibold">JOYCA</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold text-gray-700 mr-2">6</span>
+                            <span class="bank-badge">Revolut</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="top-talent-badge mr-3">7</span>
+                            <span class="font-semibold">Mcfly et Carlito</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold text-gray-700 mr-2">6</span>
+                            <span class="bank-badge">Revolut</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="top-talent-badge mr-3">8</span>
+                            <span class="font-semibold">Maxime Biaggi</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold text-gray-700 mr-2">6</span>
+                            <span class="bank-badge">Boursobank</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="top-talent-badge mr-3">9</span>
+                            <span class="font-semibold">Sora</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold text-gray-700 mr-2">6</span>
+                            <span class="bank-badge">Multi-banques</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="top-talent-badge mr-3">10</span>
+                            <span class="font-semibold">Sofyan</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold text-gray-700 mr-2">6</span>
+                            <span class="bank-badge">Trade Republic</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="top-talent-badge mr-3">11</span>
+                            <span class="font-semibold">Wankil Studio</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold text-gray-700 mr-2">6</span>
+                            <span class="bank-badge">Revolut</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="top-talent-badge mr-3">12</span>
+                            <span class="font-semibold">Louis San</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold text-gray-700 mr-2">5</span>
+                            <span class="bank-badge">Revolut</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="top-talent-badge mr-3">13</span>
+                            <span class="font-semibold">Mastu</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold text-gray-700 mr-2">5</span>
+                            <span class="bank-badge">Revolut</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="top-talent-badge mr-3">14</span>
+                            <span class="font-semibold">Pierre Croce</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold text-gray-700 mr-2">5</span>
+                            <span class="bank-badge">Revolut</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="top-talent-badge mr-3">15</span>
+                            <span class="font-semibold">Simon Puech</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold text-gray-700 mr-2">5</span>
+                            <span class="bank-badge">Multi-banques</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="top-talent-badge mr-3">16</span>
+                            <span class="font-semibold">Popcorn</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold text-gray-700 mr-2">5</span>
+                            <span class="bank-badge">Boursobank</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="top-talent-badge mr-3">17</span>
+                            <span class="font-semibold">Noholito</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold text-gray-700 mr-2">5</span>
+                            <span class="bank-badge">Revolut</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="top-talent-badge mr-3">18</span>
+                            <span class="font-semibold">Lucas Studio</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold text-gray-700 mr-2">4</span>
+                            <span class="bank-badge">BforBank</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="top-talent-badge mr-3">19</span>
+                            <span class="font-semibold">Sora</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold text-gray-700 mr-2">4</span>
+                            <span class="bank-badge">Multi-banques</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="top-talent-badge mr-3">20</span>
+                            <span class="font-semibold">Squeezie</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-lg font-bold text-gray-700 mr-2">4</span>
+                            <span class="bank-badge">Revolut</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Évolution Mensuelle -->
+        <div class="chart-container mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">
+                <i class="fas fa-chart-line text-blue-500 mr-2"></i>
+                Évolution Mensuelle des Opérations par Banque
+            </h2>
+            <div style="height: 400px;">
+                <canvas id="evolutionChart" width="1464" height="400" style="display: block; box-sizing: border-box; height: 400px; width: 1464px;"></canvas>
+            </div>
+        </div>
+
+        <!-- Répartition par Banque -->
+        <div class="chart-container mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">
+                <i class="fas fa-chart-pie text-purple-500 mr-2"></i>
+                Répartition des Opérations par Banque
+            </h2>
+            <div style="height: 400px;">
+                <canvas id="pieChart" width="1464" height="400" style="display: block; box-sizing: border-box; height: 400px; width: 1464px;"></canvas>
+            </div>
+        </div>
+
+        <!-- Heatmap -->
+        <div class="chart-container mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">
+                <i class="fas fa-fire text-red-500 mr-2"></i>
+                Heatmap de l'Activité par Banque et Mois
+            </h2>
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr>
+                            <th class="p-2 text-left">Banque</th>
+                            <th class="p-2 text-center">Jan 24</th>
+                            <th class="p-2 text-center">Fév 24</th>
+                            <th class="p-2 text-center">Mar 24</th>
+                            <th class="p-2 text-center">Avr 24</th>
+                            <th class="p-2 text-center">Mai 24</th>
+                            <th class="p-2 text-center">Jun 24</th>
+                            <th class="p-2 text-center">Jul 24</th>
+                            <th class="p-2 text-center">Aoû 24</th>
+                            <th class="p-2 text-center">Sep 24</th>
+                            <th class="p-2 text-center">Oct 24</th>
+                            <th class="p-2 text-center">Nov 24</th>
+                            <th class="p-2 text-center">Déc 24</th>
+                            <th class="p-2 text-center">Jan 25</th>
+                            <th class="p-2 text-center">Fév 25</th>
+                            <th class="p-2 text-center">Mar 25</th>
+                            <th class="p-2 text-center">Avr 25</th>
+                            <th class="p-2 text-center">Mai 25</th>
+                            <th class="p-2 text-center">Jun 25</th>
+                            <th class="p-2 text-center">Jul 25</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="p-2 font-semibold">Qonto</td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-1">1</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-1">1</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                        </tr>
+                        <tr>
+                            <td class="p-2 font-semibold">Revolut</td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-6">6</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-5">5</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-3">3</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-3">3</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-4">4</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-2">2</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-7">7</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-8">8</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-6">6</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-3">3</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-6">6</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-3">3</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-3">3</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-6">6</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-12">12</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-4">4</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-11">11</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-14">14</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-2">2</span></td>
+                        </tr>
+                        <tr>
+                            <td class="p-2 font-semibold">Trade Republic</td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-1">1</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-1">1</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-1">1</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-3">3</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-2">2</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-5">5</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-5">5</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-1">1</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-7">7</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-14">14</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-15">15</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-13">13</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-15">15</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-19">19</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-5">5</span></td>
+                        </tr>
+                        <tr>
+                            <td class="p-2 font-semibold">Boursobank</td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-1">1</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-1">1</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-1">1</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-4">4</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-1">1</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-3">3</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-5">5</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-15">15</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-6">6</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-5">5</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-6">6</span></td>
+                        </tr>
+                        <tr>
+                            <td class="p-2 font-semibold">N26</td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-2">2</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-2">2</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-2">2</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-3">3</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-2">2</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-2">2</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-8">8</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-7">7</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-3">3</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-8">8</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-1">1</span></td>
+                        </tr>
+                        <tr>
+                            <td class="p-2 font-semibold">BforBank</td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-3">3</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-4">4</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-2">2</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-2">2</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-1">1</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                        </tr>
+                        <tr>
+                            <td class="p-2 font-semibold">Sumeria</td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-6">6</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                        </tr>
+                        <tr>
+                            <td class="p-2 font-semibold">Hello Bank</td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-1">1</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-1">1</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-3">3</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                        </tr>
+                        <tr>
+                            <td class="p-2 font-semibold">Green Got</td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-1">1</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-1">1</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                            <td class="p-2 text-center"><span class="heatmap-cell heatmap-0">0</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Insights Stratégiques -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800">
+                <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                Insights Stratégiques
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="insight-box p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-chart-line text-blue-500 text-2xl mr-3"></i>
+                        <h3 class="text-xl font-semibold">Croissance Exponentielle</h3>
+                    </div>
+                    <p class="text-gray-700 mb-3">L'activité montre une croissance spectaculaire au Q1-Q2 2025 avec une augmentation de +400% par rapport à 2024.</p>
+                    <div class="bg-blue-50 p-3 rounded-lg">
+                        <strong>Pic d'activité :</strong> Juin 2025 avec 50 opérations, soit 6x la moyenne de 2024
+                    </div>
+                </div>
+                
+                <div class="insight-box p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-crown text-yellow-500 text-2xl mr-3"></i>
+                        <h3 class="text-xl font-semibold">Domination du Duopole</h3>
+                    </div>
+                    <p class="text-gray-700 mb-3">Revolut et Trade Republic contrôlent 65% du marché des créateurs, établissant un duopole dominant.</p>
+                    <div class="bg-yellow-50 p-3 rounded-lg">
+                        <strong>Parts de marché :</strong> Revolut (32.7%) + Trade Republic (32.4%) = 65.1%
+                    </div>
+                </div>
+                
+                <div class="insight-box p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-users text-green-500 text-2xl mr-3"></i>
+                        <h3 class="text-xl font-semibold">Effet Pareto Marqué</h3>
+                    </div>
+                    <p class="text-gray-700 mb-3">20% des créateurs (TOP 28) génèrent 80% des opérations, révélant une forte concentration de l'activité.</p>
+                    <div class="bg-green-50 p-3 rounded-lg">
+                        <strong>Concentration :</strong> Top 20 créateurs = 50% des opérations totales
+                    </div>
+                </div>
+                
+                <div class="insight-box p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-network-wired text-purple-500 text-2xl mr-3"></i>
+                        <h3 class="text-xl font-semibold">Fidélité vs Diversification</h3>
+                    </div>
+                    <p class="text-gray-700 mb-3">85% des talents restent fidèles à une seule banque, mais les plus actifs diversifient leurs partenariats.</p>
+                    <div class="bg-purple-50 p-3 rounded-lg">
+                        <strong>Multi-banques :</strong> 15% des talents mais 30% des opérations
+                    </div>
+                </div>
+                
+                <div class="insight-box p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-rocket text-red-500 text-2xl mr-3"></i>
+                        <h3 class="text-xl font-semibold">Émergence de Boursobank</h3>
+                    </div>
+                    <p class="text-gray-700 mb-3">Boursobank émerge comme 3ème force avec 14.5% des opérations, challengeant les néo-banques.</p>
+                    <div class="bg-red-50 p-3 rounded-lg">
+                        <strong>Tendance :</strong> Forte accélération en 2025 (+300% vs 2024)
+                    </div>
+                </div>
+                
+                <div class="insight-box p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-crystal-ball text-indigo-500 text-2xl mr-3"></i>
+                        <h3 class="text-xl font-semibold">Prédictions 2025</h3>
+                    </div>
+                    <p class="text-gray-700 mb-3">Basé sur les tendances observées, projection de 600+ opérations en 2025 avec consolidation du marché.</p>
+                    <div class="bg-indigo-50 p-3 rounded-lg">
+                        <strong>Prévision :</strong> 3-4 banques domineront 90% du marché créateurs
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistiques par Banque -->
+        <div class="chart-container mb-8">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">
+                <i class="fas fa-building text-green-500 mr-2"></i>
+                Statistiques Détaillées par Banque
+            </h2>
+            <div style="height: 400px;">
+                <canvas id="bankStatsChart" width="1464" height="400" style="display: block; box-sizing: border-box; height: 400px; width: 1464px;"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Données pour les graphiques
+        const monthlyData = [
+            { month: 'Jan 24', qonto: 0, revolut: 6, trade_republic: 1, boursobank: 0, n26: 0, bforbank: 0, sumeria: 0, hello_bank: 1, green_got: 0, total: 8 },
+            { month: 'Fév 24', qonto: 0, revolut: 5, trade_republic: 1, boursobank: 0, n26: 0, bforbank: 0, sumeria: 0, hello_bank: 0, green_got: 0, total: 6 },
+            { month: 'Mar 24', qonto: 0, revolut: 3, trade_republic: 1, boursobank: 0, n26: 0, bforbank: 0, sumeria: 0, hello_bank: 0, green_got: 1, total: 5 },
+            { month: 'Avr 24', qonto: 1, revolut: 3, trade_republic: 0, boursobank: 0, n26: 0, bforbank: 0, sumeria: 0, hello_bank: 1, green_got: 0, total: 5 },
+            { month: 'Mai 24', qonto: 1, revolut: 4, trade_republic: 0, boursobank: 0, n26: 0, bforbank: 0, sumeria: 0, hello_bank: 0, green_got: 0, total: 5 },
+            { month: 'Jun 24', qonto: 0, revolut: 2, trade_republic: 3, boursobank: 1, n26: 0, bforbank: 0, sumeria: 0, hello_bank: 0, green_got: 0, total: 6 },
+            { month: 'Jul 24', qonto: 0, revolut: 7, trade_republic: 0, boursobank: 1, n26: 0, bforbank: 0, sumeria: 6, hello_bank: 0, green_got: 0, total: 14 },
+            { month: 'Aoû 24', qonto: 0, revolut: 8, trade_republic: 0, boursobank: 0, n26: 0, bforbank: 0, sumeria: 0, hello_bank: 0, green_got: 0, total: 8 },
+            { month: 'Sep 24', qonto: 0, revolut: 6, trade_republic: 2, boursobank: 1, n26: 2, bforbank: 0, sumeria: 0, hello_bank: 0, green_got: 0, total: 11 },
+            { month: 'Oct 24', qonto: 0, revolut: 3, trade_republic: 5, boursobank: 0, n26: 2, bforbank: 3, sumeria: 0, hello_bank: 0, green_got: 0, total: 13 },
+            { month: 'Nov 24', qonto: 0, revolut: 6, trade_republic: 5, boursobank: 4, n26: 2, bforbank: 4, sumeria: 0, hello_bank: 0, green_got: 0, total: 21 },
+            { month: 'Déc 24', qonto: 0, revolut: 3, trade_republic: 1, boursobank: 1, n26: 3, bforbank: 0, sumeria: 0, hello_bank: 0, green_got: 1, total: 9 },
+            { month: 'Jan 25', qonto: 0, revolut: 3, trade_republic: 7, boursobank: 0, n26: 2, bforbank: 0, sumeria: 0, hello_bank: 0, green_got: 0, total: 12 },
+            { month: 'Fév 25', qonto: 0, revolut: 6, trade_republic: 14, boursobank: 3, n26: 2, bforbank: 2, sumeria: 0, hello_bank: 0, green_got: 0, total: 27 },
+            { month: 'Mar 25', qonto: 0, revolut: 12, trade_republic: 15, boursobank: 5, n26: 8, bforbank: 2, sumeria: 0, hello_bank: 0, green_got: 0, total: 42 },
+            { month: 'Avr 25', qonto: 0, revolut: 4, trade_republic: 13, boursobank: 15, n26: 7, bforbank: 0, sumeria: 0, hello_bank: 0, green_got: 0, total: 39 },
+            { month: 'Mai 25', qonto: 0, revolut: 11, trade_republic: 15, boursobank: 6, n26: 3, bforbank: 0, sumeria: 0, hello_bank: 0, green_got: 0, total: 35 },
+            { month: 'Jun 25', qonto: 0, revolut: 14, trade_republic: 19, boursobank: 5, n26: 8, bforbank: 1, sumeria: 0, hello_bank: 3, green_got: 0, total: 50 },
+            { month: 'Jul 25', qonto: 0, revolut: 2, trade_republic: 5, boursobank: 6, n26: 1, bforbank: 0, sumeria: 0, hello_bank: 0, green_got: 0, total: 14 }
+        ];
+
+        // Graphique d'évolution mensuelle
+        const ctx1 = document.getElementById('evolutionChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: monthlyData.map(d => d.month),
+                datasets: [
+                    {
+                        label: 'Revolut',
+                        data: monthlyData.map(d => d.revolut),
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Trade Republic',
+                        data: monthlyData.map(d => d.trade_republic),
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Boursobank',
+                        data: monthlyData.map(d => d.boursobank),
+                        borderColor: '#f59e0b',
+                        backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                        tension: 0.4
+                    },
+                    {
+                        label: 'N26',
+                        data: monthlyData.map(d => d.n26),
+                        borderColor: '#ef4444',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        tension: 0.4
+                    },
+                    {
+                        label: 'BforBank',
+                        data: monthlyData.map(d => d.bforbank),
+                        borderColor: '#8b5cf6',
+                        backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Sumeria',
+                        data: monthlyData.map(d => d.sumeria),
+                        borderColor: '#06b6d4',
+                        backgroundColor: 'rgba(6, 182, 212, 0.1)',
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Hello Bank',
+                        data: monthlyData.map(d => d.hello_bank),
+                        borderColor: '#84cc16',
+                        backgroundColor: 'rgba(132, 204, 22, 0.1)',
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Green Got',
+                        data: monthlyData.map(d => d.green_got),
+                        borderColor: '#22c55e',
+                        backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Qonto',
+                        data: monthlyData.map(d => d.qonto),
+                        borderColor: '#6b7280',
+                        backgroundColor: 'rgba(107, 114, 128, 0.1)',
+                        tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Évolution Mensuelle des Opérations par Banque'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Graphique circulaire
+        const ctx2 = document.getElementById('pieChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: ['Revolut', 'Trade Republic', 'Boursobank', 'N26', 'BforBank', 'Sumeria', 'Hello Bank', 'Green Got', 'Qonto'],
+                datasets: [{
+                    data: [108, 107, 48, 40, 12, 6, 5, 2, 2],
+                    backgroundColor: [
+                        '#3b82f6',
+                        '#10b981',
+                        '#f59e0b',
+                        '#ef4444',
+                        '#8b5cf6',
+                        '#06b6d4',
+                        '#84cc16',
+                        '#22c55e',
+                        '#6b7280'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Répartition des Opérations par Banque'
+                    }
+                }
+            }
+        });
+
+        // Graphique des statistiques par banque
+        const ctx3 = document.getElementById('bankStatsChart').getContext('2d');
+        new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: ['Revolut', 'Trade Republic', 'Boursobank', 'N26', 'BforBank', 'Sumeria', 'Hello Bank', 'Green Got', 'Qonto'],
+                datasets: [{
+                    label: 'Nombre d\'opérations',
+                    data: [108, 107, 48, 40, 12, 6, 5, 2, 2],
+                    backgroundColor: [
+                        '#3b82f6',
+                        '#10b981',
+                        '#f59e0b',
+                        '#ef4444',
+                        '#8b5cf6',
+                        '#06b6d4',
+                        '#84cc16',
+                        '#22c55e',
+                        '#6b7280'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Nombre d\'Opérations par Banque'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDmVNEqcAEWipy5o054DZo7l21k%2Bp8U45smJljfvOT79uMs%2Ff%2FUg5bVtx7Y7d%2BZ6DoSIVOpMEbUZWaCmKrauRRYLDQw7H8qiFpWAvWTaUmPL4QpIhj35EkvHz17erUScqQpmF5g7IDFEkygRay3qm0NPP1zYlfSub1qGpVX32aOKg%2FnTbIzyt6QYGMDdW6rfj4B%2BCqdHCm4sVmXJvM3d6s9q8BvqNZp42RvG%2FFsFOBEWcBZhTfWtcttA6t5SZIwSiD8vDnEEyrEJAW5TwnhcfBL5f9MTQZSlBTg4lo8%2BhhIHom0j%2FfYz5PSSLzfoXW%2BFJsgFqSz%2BPPPKcqcd4DvEPDkXhR2GxPuQcNv3XrDs178YJTkAAPsVttMa07yEhRSClBol8SRe0mDkQtqLtn2jZO92qT0%2FCXavr0BTSsStNcXViwRCjB4%2B9VmEXZ%2FK4%2BHI0OPPJToqKRwhugKNT%2BnNi%2FarJU%2Bdj1URuosyZ%2BDu6BLBEvPaHBJaWZIoOd8ZHDdOX78I6ITroGzlhn9AuzBaZIIRDyN2%2BHsSdX7vKARyaq1K9";
+        window.__genspark_locale = "fr-FR";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDmVNEqcAEWipy5o054DZo7l21k+p8U45smJljfvOT79uMs/f/Ug5bVtx7Y7d+Z6DoSIVOpMEbUZWaCmKrauRRYLDQw7H8qiFpWAvWTaUmPL4QpIhj35EkvHz17erUScqQpmF5g7IDFEkygRay3qm0NPP1zYlfSub1qGpVX32aOKg/nTbIzyt6QYGMDdW6rfj4B+CqdHCm4sVmXJvM3d6s9q8BvqNZp42RvG/FsFOBEWcBZhTfWtcttA6t5SZIwSiD8vDnEEyrEJAW5TwnhcfBL5f9MTQZSlBTg4lo8+hhIHom0j/fYz5PSSLzfoXW+FJsgFqSz+PPPKcqcd4DvEPDkXhR2GxPuQcNv3XrDs178YJTkAAPsVttMa07yEhRSClBol8SRe0mDkQtqLtn2jZO92qT0/CXavr0BTSsStNcXViwRCjB4+9VmEXZ/K4+HI0OPPJToqKRwhugKNT+nNi/arJU+dj1URuosyZ+Du6BLBEvPaHBJaWZIoOd8ZHDdOX78I6ITroGzlhn9AuzBaZIIRDyN2+HsSdX7vKARyaq1K9";
+    </script>
+    
+    <script id="html_notice_dialog_script" src="./Analyse des Opérations des Néo-Banques - Janvier 2024 à Juillet 2025_files/notice_dialog.js"></script>
+    <scribe-shadow id="crxjs-ext" data-crx="okfkdaglfjjjfefdcppliegebpoegaii" style="position: fixed; width: 0px; height: 0px; top: 0px; left: 0px; z-index: 2147483647; overflow: visible; visibility: visible;"><template shadowrootmode="open"><div id="root-scribe-elem" style="position: fixed; width: 0px; height: 0px; top: 0px; left: 0px; overflow: visible; color: rgb(15, 23, 42);"><div role="region" aria-label="Notifications (F8)" tabindex="-1" style="pointer-events: none;"><ol tabindex="-1" class="fixed bottom-auto right-0 top-0 z-[999999] flex max-h-screen w-[400px] max-w-full p-4"></ol></div></div><link rel="stylesheet" href="chrome-extension://okfkdaglfjjjfefdcppliegebpoegaii/assets/style.css"></template></scribe-shadow></body></html>
